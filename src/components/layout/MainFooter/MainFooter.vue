@@ -2,11 +2,11 @@
   <footer class="main-footer d-flex p-2 px-3 bg-white border-top">
     <div :class="[contained ? 'container' : 'container-fluid']">
       <div class="row">
-        <ul class="nav">
+        <!-- <ul class="nav">
           <li v-for="(item, idx) in menuItems" :key="idx" class="nav-item">
             <a class="nav-link" target="__blank" :href="item.to">{{ item.title }}</a>
           </li>
-        </ul>
+        </ul> -->
         <span class="copyright ml-auto my-auto mr-2">{{ copyright }}</span>
       </div>
     </div>
@@ -14,26 +14,31 @@
 </template>
 
 <script>
-const defaultMenuItems = [{
-  title: 'Home',
-  to: 'https://gorse.io/',
-}, {
-  title: 'GitHub',
-  to: 'https://github.com/gorse-io/gorse',
-}, {
-  title: 'Document',
-  to: 'https://gorse.io/docs',
-}, {
-  title: 'API',
-  to: '/apidocs/',
-}];
+const defaultMenuItems = [
+  {
+    title: "Home",
+    to: "https://gorse.io/",
+  },
+  {
+    title: "GitHub",
+    to: "https://github.com/gorse-io/gorse",
+  },
+  {
+    title: "Document",
+    to: "https://gorse.io/docs",
+  },
+  {
+    title: "API",
+    to: "/apidocs/",
+  },
+];
 
 export default {
-  name: 'main-footer',
+  name: "main-footer",
   props: {
     /**
-       * The footer menu items.
-       */
+     * The footer menu items.
+     */
     menuItems: {
       type: Array,
       default() {
@@ -41,15 +46,15 @@ export default {
       },
     },
     /**
-       * The copyright information.
-       */
+     * The copyright information.
+     */
     copyright: {
       type: String,
-      default: 'Copyright © 2021 zhenghaoz',
+      default: "Copyright © 2024 博思",
     },
     /**
-       * Whether the footer should be wrapped in a container, or not.
-       */
+     * Whether the footer should be wrapped in a container, or not.
+     */
     contained: {
       type: Boolean,
       default: false,

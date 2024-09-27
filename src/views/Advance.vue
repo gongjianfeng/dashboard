@@ -47,8 +47,9 @@
                   </d-col>
                   <d-col sm="12" md="10">
                     <label
-                      >Export items into a csv file. The format is "item_id, is_hidden, categories,
-                      timestamp, labels, description".</label
+                      >Export items into a csv file. The format is "item_id,
+                      is_hidden, categories, timestamp, labels,
+                      description".</label
                     >
                   </d-col>
                 </d-row>
@@ -93,7 +94,7 @@
                     </router-link>
                   </d-col>
                   <d-col sm="12" md="10">
-                    <label>Import users into gorse.</label>
+                    <label>Import users into bosi.</label>
                   </d-col>
                 </d-row>
               </d-list-group-item>
@@ -108,7 +109,7 @@
                     </router-link>
                   </d-col>
                   <d-col sm="12" md="10">
-                    <label>Import items into gorse.</label>
+                    <label>Import items into bosi.</label>
                   </d-col>
                 </d-row>
               </d-list-group-item>
@@ -120,7 +121,7 @@
                     </router-link>
                   </d-col>
                   <d-col sm="12" md="10">
-                    <label>Import feedbacks into gorse.</label>
+                    <label>Import feedbacks into bosi.</label>
                   </d-col>
                 </d-row>
               </d-list-group-item>
@@ -142,21 +143,41 @@
                 <d-row>
                   <d-col sm="12" md="2">
                     <d-button outline theme="danger" @click.native="handleClick"
-                    >&nbsp;Purge
-                      Database&nbsp;</d-button
+                      >&nbsp;Purge Database&nbsp;</d-button
                     >
                     <d-modal v-if="showDialog" @close="handleClose" centered>
                       <d-modal-header>
                         <d-modal-title>Are you absolutely sure?</d-modal-title>
                       </d-modal-header>
                       <d-modal-body>
-                        <label>This action <span style="color: red; font-weight: bold">cannot</span> be undone. This will permanently:</label>
-                        <d-checkbox v-model="checkList" value="delete_users">Delete all users.</d-checkbox>
-                        <d-checkbox v-model="checkList" value="delete_items">Delete all items.</d-checkbox>
-                        <d-checkbox v-model="checkList" value="delete_feedback">Delete all feedbacks.</d-checkbox>
-                        <d-checkbox v-model="checkList" value="delete_cache">Delete all caches.</d-checkbox>
-                        <d-alert :theme="alertTheme" :show="showAlert">{{ alertMessage }}</d-alert>
-                        <d-button outline theme="danger" @click="purge" :disabled="disableDialog">
+                        <label
+                          >This action
+                          <span style="color: red; font-weight: bold"
+                            >cannot</span
+                          >
+                          be undone. This will permanently:</label
+                        >
+                        <d-checkbox v-model="checkList" value="delete_users"
+                          >Delete all users.</d-checkbox
+                        >
+                        <d-checkbox v-model="checkList" value="delete_items"
+                          >Delete all items.</d-checkbox
+                        >
+                        <d-checkbox v-model="checkList" value="delete_feedback"
+                          >Delete all feedbacks.</d-checkbox
+                        >
+                        <d-checkbox v-model="checkList" value="delete_cache"
+                          >Delete all caches.</d-checkbox
+                        >
+                        <d-alert :theme="alertTheme" :show="showAlert">{{
+                          alertMessage
+                        }}</d-alert>
+                        <d-button
+                          outline
+                          theme="danger"
+                          @click="purge"
+                          :disabled="disableDialog"
+                        >
                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                           I understand the consequences, purge all data
                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -165,7 +186,9 @@
                     </d-modal>
                   </d-col>
                   <d-col sm="12" md="10">
-                    <label>Purge all data in data storage and cache storage.</label>
+                    <label
+                      >Purge all data in data storage and cache storage.</label
+                    >
                   </d-col>
                 </d-row>
               </d-list-group-item>
@@ -178,15 +201,15 @@
 </template>
 
 <script>
-const axios = require('axios');
+const axios = require("axios");
 
 export default {
   data() {
     return {
       showDialog: false,
       checkList: [],
-      alertMessage: '',
-      alertTheme: '',
+      alertMessage: "",
+      alertTheme: "",
       showAlert: false,
       disableDialog: false,
     };
@@ -204,11 +227,12 @@ export default {
     purge() {
       this.disableDialog = true;
       const params = new URLSearchParams();
-      params.append('check_list', this.checkList);
-      axios.post('api/purge', params)
+      params.append("check_list", this.checkList);
+      axios
+        .post("api/purge", params)
         .then(() => {
-          this.alertMessage = 'purge database successfully';
-          this.alertTheme = 'success';
+          this.alertMessage = "purge database successfully";
+          this.alertTheme = "success";
           this.showAlert = true;
           setTimeout(() => {
             this.showDialog = false;
@@ -220,7 +244,7 @@ export default {
           } else {
             this.alertMessage = error;
           }
-          this.alertTheme = 'danger';
+          this.alertTheme = "danger";
           this.showAlert = true;
           this.disableDialog = false;
         });
